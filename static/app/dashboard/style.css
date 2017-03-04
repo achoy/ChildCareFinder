@@ -1,0 +1,17 @@
+#dashboard {
+    height: 100%;
+}
+
+#search-bar {
+    display: flex;
+    flex-flow: row;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#search-box {
+    width: 95%;
+    margin: auto;
+    font-size: 24pt;
+}
+
