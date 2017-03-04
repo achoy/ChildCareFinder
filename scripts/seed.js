@@ -13,14 +13,15 @@ const fieldMap = [
     "lng",
     "lat",
     "licenseNumber",
+    "licenseType",
     "name",
     "address1",
     "address2",
     "address3",
     "city",
     "state",
-    "zip",
-    "county", //10
+    "zip", //10
+    "county",
     "phone",
     "licenseStatus",
     "licenseHolder",
@@ -29,8 +30,8 @@ const fieldMap = [
     "restriction",
     "services",
     "licensingBody",
-    "initialEffectiveDate",
-    "currentEffectiveDate", //20
+    "initialEffectiveDate", //20
+    "currentEffectiveDate",
     "expiration"
 ]
 
@@ -38,8 +39,8 @@ function seed() {
     var providersString = fs.readFileSync('providers.csv', 'utf8')
     var providers = []
     var lines = providersString.split('\n')
+    console.log('lines: ' + lines.length)
     lines.forEach((line, index) => {
-        if (index == 0) {}
         providers.push(parseCSVText(line))
     })
     console.log('Saving parsed providers ' + providers.length)
@@ -73,15 +74,22 @@ function seed() {
 function parseCSVText(text) {
     var ret = {}
     var columns = text.split(',')
+    
     columns.forEach((col, i) => {
+        var value
         if (i == 16) {
-            ret[fieldMap[i]] = col.replace('"', '').split(';')
+            ret[fieldMap[i]] = format(col)
+        } else if (i > 19) {
+            
         } else if (i < fieldMap.length) {
-            ret[fieldMap[i]] = col.replace('"', '')
+            ret[fieldMap[i]] = format(col)
         }
-        ret[fieldMap[i]] = col
     })
     return ret
+}
+
+function format(text) {
+    return text.replace('"', '').replace("  ", ", ").trim()
 }
 
 seed()
