@@ -37,6 +37,14 @@ public class ChildCareMain {
 		ChildCareMain ccmain = new ChildCareMain();
 		ccmain.Connect(args[0], args[1]);
 
+		try
+		{
+			ChildCareApp.runServer();
+		}
+		catch (Exception e)
+		{
+			
+		}
 		
 	}
 

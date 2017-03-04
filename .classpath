@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/bson-3.4.2.jar"/>
 	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/mongodb-driver-3.4.2.jar"/>
 	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/mongodb-driver-core-3.4.2.jar"/>
+	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/org.simpleframework_5.1/org.simpleframework.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
