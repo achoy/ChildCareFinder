@@ -3,7 +3,7 @@
         <input type="text" md-input id="search-box" placeholder="Search location" name="search" [(ngModel)]="searchTerm"/>
         <button md-mini-fab id="search" (click)="findProviders()"><md-icon>search</md-icon></button>
     </md-card-header>
-    <md-card-content id="search-results" *ngIf="resultSet">
+    <md-card-content id="search-results" *ngIf="resultSet && !mapView">
         <md-card class="result" *ngFor="let entry of resultSet" (click)="goTo(entry.license.id)">
             <md-card-title-group class="result-title">
                 <md-card-title>

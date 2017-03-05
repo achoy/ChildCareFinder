@@ -18,7 +18,7 @@ export class Caretakers {
     constructor(private http: Http) {}
 
     getAll(): Promise<Caretaker[]> {
-        return this.http.get('/api/providers')
+        return this.http.get('http://childcarefinder.choyware.com:5000/api/providers')
             .toPromise()
             .then(response => {
                 var json = response.json()
@@ -31,7 +31,7 @@ export class Caretakers {
     }
 
     getSingle(id: string): Promise<Caretaker> {
-        return this.http.get(`/api/provider/${id}`)
+        return this.http.get(`http://childcarefinder.choyware.com:5000/api/providers/${id}`)
             .toPromise()
             .then(response => {
                 let json = response.json()
