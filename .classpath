@@ -9,5 +9,7 @@
 	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/mongodb-driver-3.4.2.jar"/>
 	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/mongodb-driver-core-3.4.2.jar"/>
 	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/org.simpleframework_5.1/org.simpleframework.jar"/>
+	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/org.restlet.ext.json.jar"/>
+	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/org.json_2.0/org.json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

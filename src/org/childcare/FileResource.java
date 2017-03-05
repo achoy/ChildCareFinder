@@ -4,7 +4,7 @@ import org.restlet.representation.FileRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.ServerResource;
 
-public class FileResource extends ServerResource {
+public class FileResource extends APIResource {
 
 	public FileResource()
 	{
@@ -26,20 +26,18 @@ public class FileResource extends ServerResource {
 	{
 		String filename = getAttribute(ChildCareApp.FILENAME_PARAM);
 		if (Helpers.isNullOrEmpty(filename))
-			return null;
+		{
+			return replyErrorMessage("500", "Invalid parameter filename.");
+		}
 		
 		String localPath = Helpers.getLocalPath(path, filename);
 		if (!Helpers.fileExist(localPath))
 		{
-			System.out.println("Cannot open file " + localPath);
-			return null;
+			return replyErrorMessage("500", "Cannot open file " + localPath);
 		}
 		
 		return new FileRepresentation(localPath, Helpers.resolveMediaType(filename));
 	}
 	
-	protected ChildCareApp getParent()
-	{
-		return (ChildCareApp) this.getApplication();
-	}
+
 }

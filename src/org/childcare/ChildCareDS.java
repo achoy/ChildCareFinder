@@ -2,10 +2,7 @@ package org.childcare;
 
 import org.bson.Document;
 
-import com.mongodb.BasicDBList;
-import com.mongodb.BasicDBObject;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+import com.mongodb.*;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -44,7 +41,9 @@ public class ChildCareDS {
 	
 	public String query(String collectionName, BasicDBObject query)
 	{
-		MongoCollection<Document> collection = _db.getCollection(collectionName);
+		MongoCollection<Document> collection = _db.getCollection(collectionName);		
+		if (collection == null)
+			return "";
 		
 		FindIterable<Document> find = collection.find(query).limit(1000);
 		if (find == null)
@@ -58,5 +57,31 @@ public class ChildCareDS {
 		}
 		
 		return JSON.serialize(list);
+	}
+	
+	public DBObject queryBSON(String collectionName, BasicDBObject query)
+	{
+		MongoCollection<DBObject> collection = _db.getCollection(collectionName, DBObject.class);
+		
+		FindIterable<DBObject> find = collection.find(query);
+		if (find != null)
+		{
+			MongoCursor<DBObject> iterator = find.iterator();
+			if (iterator.hasNext())
+			{
+				return iterator.next();
+			}
+		}
+		return null;
+	}
+	
+	public void put(String collectionName, DBObject newDocument) throws MongoException
+	{
+		MongoCollection<DBObject> collection = _db.getCollection(collectionName, DBObject.class);
+		
+		if (collection != null)
+		{
+			collection.insertOne(newDocument);
+		}		
 	}
 }

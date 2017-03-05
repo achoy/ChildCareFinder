@@ -100,7 +100,8 @@ public class ChildCareApp extends Application {
 				handler.setLevel(Level.INFO);
 		}
 		
-		bind("/api/providers", ProviderResource.class);
+		bind("/api/providers", ProviderQueryResource.class);
+		bind("/api/provider/{id}", ProviderResource.class);
 		bindUrlAppendFilename("", FileResource.class);
 	}
 	
