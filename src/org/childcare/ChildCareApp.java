@@ -77,7 +77,7 @@ public class ChildCareApp extends Application {
 	private void addProtocol(Component c, Protocol protocol, int port)
 	{
 		System.out.println("Listening on localhost:" + port + " protocol:" + protocol.getName());
-		c.getServers().add(protocol, "localhost", port);
+		c.getServers().add(protocol, port);
 	}
 	
 	private void bind(String url, Class<? extends ServerResource> res)
