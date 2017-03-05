@@ -1,4 +1,5 @@
-/bin/
+bin/**/*.class
+src/**/*.class
 
 **/app/**/*.js
 **/app/**/*.js.map
@@ -6,3 +7,4 @@
 **/node_modules
 
 **/.DS_Store
+/bin/
