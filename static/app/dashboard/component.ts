@@ -14,6 +14,7 @@ export class Dashboard implements OnInit {
 
     resultSet: Caretaker[]
     searchTerm: string = ''
+    mapView: boolean = false
 
     constructor(private caretakers: Caretakers,
                 private router: Router) {}
@@ -28,6 +29,10 @@ export class Dashboard implements OnInit {
             .then(cts => {
                 this.resultSet = cts
             })
+    }
+
+    changeView() {
+        this.mapView = !this.mapView
     }
 
     goTo(id: string) {
