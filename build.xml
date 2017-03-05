@@ -1,0 +1,88 @@
+<project name="ChildCareFinder" default="all" basedir=".">
+    
+    <!-- Project for building and deploying Voyager Java. -->
+    
+    <property name="application.root" value="org/childcare"/>
+    <property name="classes.home"     value="src"/>
+    <property name="javabin.root"     value="."/>
+	<property name="build"            value="${javabin.root}/bin"/>
+    <property name="deploy.jar"       value="${javabin.root}/bin/childcare.jar"/>
+    <property name="3rdparty.libs"    value="${javabin.root}/lib"/>
+    
+    <!-- Cleanup -->    
+    <target name="clean_classes">
+        <delete>
+            <fileset dir="${classes.home}" includes="${application.root}/*.class"/>
+        </delete>
+    </target>
+    
+    <target name="clean" depends="clean_classes">
+        <delete file="${deploy.jar}" quiet="true"/>
+   </target>
+
+	<path id="3rd-party-classpath">
+		<fileset dir="${3rdparty.libs}">
+            <include name="org.simpleframework.jar" />
+            <include name="org.json.jar" />
+       	    <include name="org.restlet.ext.json.jar" />
+            <include name="bson-3.4.2.jar" />
+            <include name="mongodb-driver-3.4.2.jar" />
+            <include name="mongodb-driver-core-3.4.2.jar" />
+            <include name="org.restlet.jar" />
+			<include name="org.restlet.ext.simple.jar" />
+        </fileset>
+	</path>
+
+	
+    <!-- Debug Compile -->
+    <target name="compile_debug" depends="clean">
+        <javac destdir="${classes.home}" debug="on" optimize="on" deprecation="on">
+
+	        <classpath refid="3rd-party-classpath" />
+
+            <!-- Java code to compile-->
+            <src path="${classes.home}"/>
+            <include name="${application.root}/*.java" />
+        </javac>
+    </target>
+
+    <!-- Release Compile -->
+    
+    <!-- Deploy -->
+    <target name="deploy" depends="compile_debug">
+        <jar jarfile="${deploy.jar}">
+            <fileset dir="${classes.home}" includes="${application.root}/*.class"/>
+        </jar>
+    </target>
+
+    <target name="all" depends="deploy"/>
+    
+	<target name="run" depends="deploy">
+	    <java classname="org.childcare.ChildCareMain">
+	      <classpath>
+	        <pathelement location="${deploy.jar}" />
+	        <path refid="3rd-party-classpath" />
+	      </classpath>
+	    </java>
+	</target>
+
+    <target name="help">
+        <echo>
+            Usage: build [opt]
+
+            Where opt is one of the following options:
+            clean_classes   => delete all .class files
+            clean           => delete all .class files, ${deploy.jar}, and ${translation.jar}
+            compile_debug   => compile with debug, optimize and deprecation
+            compile_release => compile with optimize and deprecation
+            deploy          => Runs clean, compile_release and Jar classes into ${deploy.jar} and ${translation.jar}
+            int_docs        => Create internal Javadocs
+            pub_docs        => Create public Javadocs
+            docs            => Create internal and public Javadocs
+            all             => Runs deploy and docs
+            help            => Print this message
+            [default]       => Runs all
+        </echo>
+    </target>
+
+</project>
