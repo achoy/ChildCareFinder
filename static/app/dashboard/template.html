@@ -4,7 +4,7 @@
         <button md-mini-fab id="search" (click)="findProviders()"><md-icon>search</md-icon></button>
     </md-card-header>
     <md-card-content id="search-results" *ngIf="resultSet">
-        <md-card class="result" *ngFor="let entry of resultSet">
+        <md-card class="result" *ngFor="let entry of resultSet" (click)="goTo(entry.license.id)">
             <md-card-title-group class="result-title">
                 <md-card-title>
                 {{ entry.name }}

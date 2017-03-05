@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+
 
 import { Caretakers } from '../caretakers/service'
 import { Caretaker } from '../models/caretaker'
@@ -13,7 +15,8 @@ export class Dashboard implements OnInit {
     resultSet: Caretaker[]
     searchTerm: string = ''
 
-    constructor(private caretakers: Caretakers) {}
+    constructor(private caretakers: Caretakers,
+                private router: Router) {}
 
     ngOnInit(): void {
 
@@ -27,5 +30,8 @@ export class Dashboard implements OnInit {
             })
     }
 
+    goTo(id: string) {
+        this.router.navigate(['api', 'providers', id])
+    }
     
 }

@@ -8,6 +8,7 @@ import { AppComponent } from './component'
 import { Router } from './router/module'
 
 import { Dashboard } from './dashboard/component'
+import { Single } from './single/component'
 
 import { Caretakers } from './caretakers/service'
 
@@ -24,7 +25,8 @@ import { Caretakers } from './caretakers/service'
     ],
     declarations: [
         AppComponent,
-        Dashboard
+        Dashboard,
+        Single
     ],
     bootstrap: [
         AppComponent
