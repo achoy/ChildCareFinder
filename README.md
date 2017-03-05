@@ -11,7 +11,7 @@ Return all providers with query
 
 ### `/api/provider/{id}`
 
-Get or update a provider info
+Get or update a provider info (id = licenseNumber)
 
 ### `/file.html`
 
