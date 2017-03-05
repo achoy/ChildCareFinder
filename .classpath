@@ -4,16 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/Java SE 1.8"/>
 	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/org.restlet.jar"/>
 	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/org.restlet.ext.simple.jar"/>
-	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/org.restlet.ext.swagger.jar"/>
-	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/com.fasterxml.jackson_2.4/com.fasterxml.jackson.annotations.jar"/>
 	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/com.fasterxml.jackson_2.4/com.fasterxml.jackson.core.jar"/>
-	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/com.fasterxml.jackson_2.4/com.fasterxml.jackson.csv.jar"/>
-	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/com.fasterxml.jackson_2.4/com.fasterxml.jackson.databind.jar"/>
-	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/com.fasterxml.jackson_2.4/com.fasterxml.jackson.jaxb.jar"/>
-	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/com.fasterxml.jackson_2.4/com.fasterxml.jackson.jsonschema.jar"/>
-	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/com.fasterxml.jackson_2.4/com.fasterxml.jackson.smile.jar"/>
-	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/com.fasterxml.jackson_2.4/com.fasterxml.jackson.xml.jar"/>
-	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/com.fasterxml.jackson_2.4/com.fasterxml.jackson.yaml.jar"/>
 	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/bson-3.4.2.jar"/>
 	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/mongodb-driver-3.4.2.jar"/>
 	<classpathentry kind="lib" path="/Users/achoy/github/ChildCareFinder/lib/mongodb-driver-core-3.4.2.jar"/>
