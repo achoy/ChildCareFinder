@@ -9,6 +9,8 @@ import { Router } from './router/module'
 
 import { Dashboard } from './dashboard/component'
 
+import { Caretakers } from './caretakers/service'
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -18,7 +20,7 @@ import { Dashboard } from './dashboard/component'
         Router
     ],
     providers: [
-
+        Caretakers
     ],
     declarations: [
         AppComponent,
