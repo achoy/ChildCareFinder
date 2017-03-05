@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Http } from '@angular/http'
+import { Http, Request, Response, RequestOptions, Headers } from '@angular/http'
 import { Observable } from 'rxjs'
 import 'rxjs/add/operator/toPromise'
 
@@ -14,13 +14,13 @@ import { Mocks } from './mocks'
 @Injectable()
 export class Caretakers {
 
-
     constructor(private http: Http) {}
 
     getAll(): Promise<Caretaker[]> {
         return this.http.get('http://childcarefinder.choyware.com:5000/api/providers')
             .toPromise()
             .then(response => {
+                console.log(response)
                 var json = response.json()
                 console.log(typeof json)
                 console.log(json)
