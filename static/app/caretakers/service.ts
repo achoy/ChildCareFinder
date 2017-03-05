@@ -22,6 +22,8 @@ export class Caretakers {
             .toPromise()
             .then(response => {
                 var json = response.json()
+                console.log(typeof json)
+                console.log(json)
                 return json.map(jsonCaretaker => {
                     return this.convert(jsonCaretaker)
                 })
