@@ -25,6 +25,8 @@ export class Caretakers {
                 return json.map(jsonCaretaker => {
                     return this.convert(jsonCaretaker)
                 })
+            }).catch(error => {
+                return this.convert(Mocks.providersMocks)
             })
     }
 
@@ -34,6 +36,17 @@ export class Caretakers {
             .then(response => {
                 let json = response.json()
                 return this.convert(json)
+            }).catch(error => {
+                var list = Mocks.providersMocks.filter(entry => {
+                    if (entry.licenseNumber == id) {
+                        return entry
+                    }
+                })
+                if (list.length > 0) {
+                    return this.convert(list[0])
+                } else {
+                    return error
+                }
             })
     }
 

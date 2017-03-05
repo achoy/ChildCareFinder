@@ -1,10 +1,10 @@
 export class Mocks {
 
-    static get providers(): string {
+    static get providersString(): string {
         return JSON.stringify(Mocks.providersMocks)
     }
 
-private static providersMocks = [
+static providersMocks = [
 {"_id":"58bb559c6593653d094971b1","lng":"-93.34454289","lat":"45.10937379","licenseNumber":"1011675","licenseType":"Day time child care Ages Served: Infants; Toddlers; Preschool; School age","name":"3R's Early Childhood Learning Center Inc","address1":"4900 85th Ave N","address2":"","address3":"","city":"Brooklyn Park","state":"MN","zip":"55443-1957","county":"Hennepin","phone":"(763) 315-5006","licenseStatus":"Active","licenseHolder":"3R's Early Childhood Learning Center, LLC","capacity":"206","restriction":"None","services":"Child Care Center","licensingBody":"Minnesota Department of Human Services"},
 {"_id":"58bb559c6593653d094971b2","lng":"-93.37977502","lat":"44.87967203","licenseNumber":"800020","licenseType":"Day time child care Ages Served: Toddlers; Preschool","name":"ABC Express","address1":"6820 St. Patrick Lane","address2":"","address3":"","city":"Edina","state":"MN","zip":"55439","county":"Hennepin","phone":"(952) 941-8973","licenseStatus":"Active","licenseHolder":"ABC Express, Inc.","capacity":"79","restriction":"None","services":"Child Care Center","licensingBody":"Minnesota Department of Human Services"},
 {"_id":"58bb559c6593653d094971b3","lng":"-93.35211973","lat":"45.11038212","licenseNumber":"800255","licenseType":"Day time child care Ages Served: Preschool","name":"ABC Pre K","address1":"5600 85th Ave N","address2":"","address3":"","city":"Brooklyn Park","state":"MN","zip":"55443","county":"Hennepin","phone":"(763) 488-6354","licenseStatus":"Active","licenseHolder":"Brooklyn Park Preschool Cac","capacity":"27","restriction":"None","services":"Child Care Center","licensingBody":"Minnesota Department of Human Services"},
