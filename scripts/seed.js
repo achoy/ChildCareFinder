@@ -26,9 +26,9 @@ const fieldMap = [
     "licenseStatus",
     "licenseHolder",
     "capacity",
-    "licenseType",
+    "licenseType", //16
     "restriction",
-    "services",
+    "services", //18
     "licensingBody",
     "initialEffectiveDate", //20
     "currentEffectiveDate",
@@ -72,15 +72,20 @@ function seed() {
 }
 
 function parseCSVText(text) {
-    var ret = {}
+    var ret = {
+        loc: []
+    }
     var columns = text.split(',')
     
     columns.forEach((col, i) => {
-        var value
-        if (i == 16) {
-            ret[fieldMap[i]] = format(col)
-        } else if (i > 19) {
-            
+        if (i == 0) {
+            ret.loc.push(Number.parseFloat(col))
+        } else if (i == 1) {
+            ret.loc.push(Number.parseFloat(col))
+        } else if (i == 15) {
+            ret[fieldMap[i]] = Number.parseInt(col)
+        } else if (i >= 20) {
+            ret[fieldMap[i]] = new Date(col)
         } else if (i < fieldMap.length) {
             ret[fieldMap[i]] = format(col)
         }
