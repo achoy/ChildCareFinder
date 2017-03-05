@@ -18,15 +18,27 @@ export class Caretakers {
     constructor(private http: Http) {}
 
     getAll(): Promise<Caretaker[]> {
-        return new Promise<Caretaker[]>((resolve, reject) => {
-        // })
-        // return this.http.get('/mock/route')
-        //     .toPromise()
-        //     .then(response => {
-        //         var json = response.json()
-            var json = JSON.parse(Mocks.providers)
-                var mapped = json.map(jsonCaretaker => {
-                    var name = jsonCaretaker.name
+        return this.http.get('/api/providers')
+            .toPromise()
+            .then(response => {
+                var json = response.json()
+                return json.map(jsonCaretaker => {
+                    return this.convert(jsonCaretaker)
+                })
+            })
+    }
+
+    getSingle(id: string): Promise<Caretaker> {
+        return this.http.get(`/api/provider/${id}`)
+            .toPromise()
+            .then(response => {
+                let json = response.json()
+                return this.convert(json)
+            })
+    }
+
+    private convert(jsonCaretaker: any): Caretaker {
+        var name = jsonCaretaker.name
                     var loc = new Location(
                     jsonCaretaker.lat, 
                     jsonCaretaker.lng, 
@@ -40,7 +52,7 @@ export class Caretakers {
                     )
                     var license = new License(
                         jsonCaretaker.licenseNumber,
-                        this.convertStatus(jsonCaretaker.licenseStatus),
+                        jsonCaretaker.licenseStatus,
                         jsonCaretaker.licenseStatus,
                         jsonCaretaker.licenseType,
                         
@@ -48,32 +60,5 @@ export class Caretakers {
                     return new Caretaker(
                         jsonCaretaker._id, loc, name, jsonCaretaker.phone, license
                     )
-                })
-                resolve(mapped)
-            })
     }
-
-    private convertStatus(statusString: string): LicenseStatus {
-        switch (statusString) {
-            case "Active":
-                return LicenseStatus.active
-            case "Conditional":
-                return LicenseStatus.conditional
-            case "Closed":
-                return LicenseStatus.closed
-            case "Revoked":
-                return LicenseStatus.revoked
-            case "Denied":
-                return LicenseStatus.denied
-            default:
-                if (statusString.includes("May Operate")) {
-                    return LicenseStatus.revokedMayOperate
-                }
-                if (statusString.includes("Under Appeal")) {
-                    return LicenseStatus.revokedUnderAppeal
-                }
-                return LicenseStatus.unknown
-        }
-    }
-    
 }
