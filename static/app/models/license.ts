@@ -1,15 +1,13 @@
-import { LicenseStatus } from './licenseStatus'
-
 export class License {
     id: number
-    status: LicenseStatus
+    status: string
     type: string
     holder: string
     body: string
 
     constructor(
         id: number = -1,
-        status: LicenseStatus = LicenseStatus.unknown,
+        status: string = "Unknown",
         licenseType: string = "not provided",
         licenseHolder: string = "not provided",
         licensingBody: string = "not provided"
