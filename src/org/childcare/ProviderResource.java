@@ -36,7 +36,7 @@ public class ProviderResource extends APIResource {
 		JSONObject result = new JSONObject();
 		try {
 			String jsonString = newData.getText();
-			DBObject bson = (DBObject) JSON.parse(jsonString);
+			DBObject bson = (DBObject) JSON.parse(jsonString);  // TODO: seriously, no validation at all, should check if there is a licenseNumber at least
 			
 			ds.put("providers", bson);
 			
