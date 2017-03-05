@@ -1,0 +1,44 @@
+<md-card id="dashboard">
+    <md-card-header id="seach-bar">
+        <input type="text" md-input id="search-box" placeholder="Search location" name="search" [(ngModel)]="searchTerm"/>
+        <button md-mini-fab id="search" (click)="findProviders()"><md-icon>search</md-icon></button>
+    </md-card-header>
+    <md-card-content id="search-results" *ngIf="resultSet">
+        <md-card class="result" *ngFor="let entry of resultSet">
+            <md-card-title-group class="result-title">
+                <md-card-title>
+                {{ entry.name }}
+                </md-card-title>
+            </md-card-title-group>
+            <md-card-content class="provider-data">
+                <md-card class="address container">
+                    <md-card-title-group class="container-title">
+                        <md-card-title>
+                            <i style="font-weight: bold">Address</i>
+                        </md-card-title>
+                    </md-card-title-group>
+                    <md-card-content class="data-lines">
+                        <span class="address-line">{{ entry.location.addressLine1}}</span>
+                        <span class="address-line" *ngIf="entry.location.addressLine2.length > 0">{{ entry.location.addressLine2 }}</span>
+                        <span class="address-line" *ngIf="entry.location.addressLine3.length > 0">{{ entry.location.addressLine2 }}</span>
+                        <span class="address-line" >{{ entry.location.city }}, {{ entry.location.state }} {{ entry.location.zipCode }}</span>
+                    </md-card-content>
+                </md-card>
+                <md-card class="license container">
+                    <md-card-title-group class="container-title">
+                        <md-card-title>
+                            <i style="font-weight: bold">License Information</i>
+                        </md-card-title>
+                    </md-card-title-group>
+                    <md-card-content class="data-lines">
+                        <span class="license-line"><i style="font-weight: bold">License ID: </i>{{ entry.license.id }}</span>
+                        <span class="license-status"><i style="font-weight: bold">License status: </i>{{ entry.license.status }}</span>
+                        <span class="license-type"><i style="font-weight: bold">License type: </i>{{ entry.license.type }}</span>
+                        <span class="license-holder"><i style="font-weight: bold">License holder: </i>{{ entry.license.holder }}</span>
+                        <span class="license-body"><i style="font-weight: bold">License provider: </i>{{ entry.license.body }}</span>
+                    </md-card-content>
+                </md-card>
+            </md-card-content>
+        </md-card>
+    </md-card-content>
+</md-card>
