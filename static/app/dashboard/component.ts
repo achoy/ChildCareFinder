@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 
+import { Caretakers } from '../caretakers/service'
+import { Caretaker } from '../models/caretaker'
 
 @Component({
     selector: '<dashboard>',
@@ -8,10 +10,21 @@ import { Component, OnInit } from '@angular/core'
 })
 export class Dashboard implements OnInit {
 
-    results = []
+    resultSet: Caretaker[]
+    searchTerm: string = ''
+
+    constructor(private caretakers: Caretakers) {}
 
     ngOnInit(): void {
-        
+
+    }
+
+    findProviders() {
+        console.log(this.searchTerm)
+        this.caretakers.getAll()
+            .then(cts => {
+                this.resultSet = cts
+            })
     }
 
     

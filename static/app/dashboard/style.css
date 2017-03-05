@@ -1,5 +1,4 @@
 #dashboard {
-    height: 100%;
 }
 
 #search-bar {
@@ -15,3 +14,47 @@
     font-size: 24pt;
 }
 
+#search-results {
+    width: 95%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+}
+
+.result {
+    width: 95%;
+    margin: 1%;
+}
+
+.provider-data {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row;
+    flex-wrap: nowrap;
+}
+
+.container-title {
+    margin-left: 5px;
+}
+
+.container {
+    margin: 2%;
+    padding: 1%;
+    border: solid 1px darkgrey;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+}
+
+.data-lines {
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+}
+
+.result-title {
+    font-weight: bold;
+    font-size: 20pt;
+    margin: 2px;
+}
