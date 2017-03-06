@@ -1,6 +1,6 @@
 bin/**/*.class
 src/**/*.class
-
+nohup.out
 **/app/**/*.js
 **/app/**/*.js.map
 

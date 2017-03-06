@@ -47,7 +47,7 @@ public class ChildCareApp extends Application {
 	
 	public Context getContext()
 	{
-		return getComponent().getContext();
+		return getComponent().getContext().createChildContext();
 	}
 	
 	private void addLocation(VirtualHost vhost, String uriPattern, Restlet app)
