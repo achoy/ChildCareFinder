@@ -1,8 +1,8 @@
 package org.childcare;
 
 
-import org.restlet.data.*;
 import org.restlet.representation.*;
+import org.restlet.ext.json.JsonRepresentation;
 
 import com.mongodb.BasicDBObject;
 
@@ -13,11 +13,12 @@ public class ProviderQueryResource extends APIResource {
 	{
 		ChildCareDS ds = this.getParent().getData();
 		BasicDBObject query = new BasicDBObject();
-		String result = ds.query("providers", query);
 		
-		System.out.println("Results: " + result);
-		return new StringRepresentation(result, MediaType.APPLICATION_ALL_JSON);
+		// take in some query if presented on command line
+		
+		JsonRepresentation result = ds.queryJSON("providers", query, 100);
+		System.err.println("providers count = " + ds.getQueryCount());		
+		return result;
 	}
 	
-
 }
