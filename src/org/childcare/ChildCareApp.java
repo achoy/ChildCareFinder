@@ -6,12 +6,8 @@ package org.childcare;
 import org.restlet.*;
 import org.restlet.data.*;
 import org.restlet.resource.ServerResource;
-import org.restlet.routing.VirtualHost;
+import org.restlet.routing.*;
 import java.util.logging.*;
-
-import org.restlet.routing.Router;
-import org.restlet.routing.TemplateRoute;
-import org.restlet.routing.Variable;
 
 /**
  * 
@@ -91,6 +87,12 @@ public class ChildCareApp extends Application {
 		route.getTemplate().getVariables().put(FILENAME_PARAM, new Variable(Variable.TYPE_ALL));
 	}
 	
+	private void redirect(String from, String to)
+	{
+		Redirector redirector = new Redirector(getContext(), to, Redirector.MODE_CLIENT_FOUND);
+		getRouter().attach(from, redirector);
+	}
+	
 	private void init()
 	{
 		Logger logger = Logger.getLogger("org.restlet");
@@ -100,9 +102,25 @@ public class ChildCareApp extends Application {
 				handler.setLevel(Level.INFO);
 		}
 		
+		getRouter().setDefaultMatchingMode(Router.MODE_FIRST_MATCH);
+		
+		Restlet mainPage = new Restlet(getContext())
+		{
+			@Override
+			public void handle(Request request, Response response)
+			{
+				Redirector redirector = new Redirector(getContext(), "/index.html", Redirector.MODE_CLIENT_TEMPORARY);
+				redirector.handle(request, response);
+			}
+		};
+		
+		getRouter().attachDefault(mainPage);
+
 		bind("/api/providers", ProviderQueryResource.class);
 		bind("/api/provider/{id}", ProviderResource.class);
+		redirect("/dashboard", "/index.html");
 		bindUrlAppendFilename("", FileResource.class);
+		
 	}
 	
 	public void start(String username, String password)
