@@ -13,4 +13,5 @@ ant deploy
 jar umf Manifest.txt $APP
 
 echo must provide username and password to run
-nohup java -jar $APP $1 $2 . &
+#nohup java -jar $APP $1 $2 . &
+java -jar $APP $1 $2 .
