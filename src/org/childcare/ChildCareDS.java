@@ -1,6 +1,8 @@
 package org.childcare;
 
 import org.bson.Document;
+import org.restlet.ext.json.JsonRepresentation;
+import org.json.*;
 
 import com.mongodb.*;
 import com.mongodb.client.FindIterable;
@@ -12,10 +14,16 @@ import com.mongodb.client.MongoCursor;
 public class ChildCareDS {
 
 	MongoDatabase _db;
+	int _counter = 0;
 	
 	public ChildCareDS()
 	{
 		
+	}
+	
+	public int getQueryCount()
+	{
+		return _counter;
 	}
 	
 	public void connect(String user, String password)
@@ -59,16 +67,37 @@ public class ChildCareDS {
 		return JSON.serialize(list);
 	}
 	
+	public JsonRepresentation queryJSON(String collectionName, BasicDBObject query, int limit)
+	{
+		JSONArray arrayList = new JSONArray();
+		MongoCollection<DBObject> collection = _db.getCollection(collectionName, DBObject.class);
+		_counter = 0;
+		FindIterable<DBObject> find = collection.find(query).limit(limit);
+		if (find != null)
+		{
+			MongoCursor<DBObject> iterator = find.iterator();
+			while (iterator.hasNext())
+			{
+				JSONObject jo = new JSONObject(iterator.next().toMap());
+				arrayList.put(jo);
+			}
+			_counter = arrayList.length();
+		}
+		
+		return new JsonRepresentation(arrayList);
+	}
+	
 	public DBObject queryBSON(String collectionName, BasicDBObject query)
 	{
 		MongoCollection<DBObject> collection = _db.getCollection(collectionName, DBObject.class);
-		
+		_counter = 0;
 		FindIterable<DBObject> find = collection.find(query);
 		if (find != null)
 		{
 			MongoCursor<DBObject> iterator = find.iterator();
 			if (iterator.hasNext())
 			{
+				_counter = 1;
 				return iterator.next();
 			}
 		}
